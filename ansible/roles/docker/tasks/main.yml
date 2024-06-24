@@ -1,0 +1,54 @@
+---
+- name: Install required dependencies
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - software-properties-common
+
+- name: Download Docker’s official GPG key
+  command: curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /tmp/docker_gpg
+
+- name: Add Docker’s official GPG key
+  command: apt-key add /tmp/docker_gpg
+
+- name: Get Ubuntu release name
+  command: lsb_release -cs
+  register: release_name
+
+- name: Set up the Docker repository
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ release_name.stdout }} stable"
+    state: present
+    filename: 'docker'
+
+- name: Update apt cache
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Install Docker
+  apt:
+    name: docker-ce
+    state: present
+
+- name: Get system architecture
+  command: uname -m
+  register: uname_m
+
+- name: Get system kernel name
+  command: uname -s
+  register: uname_s
+
+- name: Download Docker Compose
+  command: curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-{{ uname_s.stdout }}-{{ uname_m.stdout }}" -o /usr/local/bin/docker-compose
+
+- name: Apply executable permissions to the Docker Compose binary
+  file:
+    path: /usr/local/bin/docker-compose
+    mode: '0755'
+    state: file
+

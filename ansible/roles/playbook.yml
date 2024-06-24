@@ -1,0 +1,13 @@
+---
+- hosts: all
+  become: yes
+  gather_facts: yes  # Ensure facts are gathered
+
+  roles:
+   - role: common
+   - role: git
+   - role: docker
+   - role: java
+   - role: jenkins
+   - role: sonarqube
+
