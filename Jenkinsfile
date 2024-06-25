@@ -24,28 +24,28 @@ pipeline {
     	    }
 	}
 
-	   stage('Run SonarQube Test') {
-            steps {
-                script {
-                    	
-                    		SonarQubeTest()
+	//   stage('Run SonarQube Test') {
+        //    steps {
+        //        script {
+          //          	
+            //        		SonarQubeTest()
                     
-                }
-            }
-        }
+            //    }
+        //    }
+       // }
 	
        
 
-       // stage('Build Docker Image') {
-       //     steps {
-        //        script {
-         //   
-         //                       
-         //                       BuildandPush("${dockerHubCredentialsID}", "${imageName}")
+        stage('Build Docker Image') {
+           steps {
+               script {
+           
+                              
+                               BuildandPush("${dockerHubCredentialsID}", "${imageName}")
                     
-         //       }
-         //   }
-      //  }
+               }
+            }
+        }
     
 
     stage('Deploy on OpenShift Cluster') {
