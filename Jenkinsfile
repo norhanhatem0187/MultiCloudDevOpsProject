@@ -36,16 +36,16 @@ pipeline {
 	
        
 
-        stage('Build Docker Image') {
-            steps {
-                script {
-            
-                                
-                                BuildandPush("${dockerHubCredentialsID}", "${imageName}")
+       // stage('Build Docker Image') {
+       //     steps {
+        //        script {
+         //   
+         //                       
+         //                       BuildandPush("${dockerHubCredentialsID}", "${imageName}")
                     
-                }
-            }
-        }
+         //       }
+         //   }
+      //  }
     
 
     stage('Deploy on OpenShift Cluster') {
