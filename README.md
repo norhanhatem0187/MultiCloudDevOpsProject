@@ -28,7 +28,7 @@ In This repository you will find the infrastructure provisioning, configuration 
 
 ### We check our mointoring Module
 
-!<img src="https://github.com/norhanhatem0187/MultiCloudDevOpsProject/blob/dev/screenshots/monitoring1.PNG"width="1000">
+!<img src="https://github.com/norhanhatem0187/MultiCloudDevOpsProject/blob/dev/screenshots/monitoring1.PNG" width="1000" >
 !<img src="https://github.com/norhanhatem0187/MultiCloudDevOpsProject/blob/dev/screenshots/monitoring2.PNG"width="1000">
 
 ## !! Ansible !! 
